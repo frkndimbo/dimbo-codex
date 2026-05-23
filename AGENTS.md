@@ -94,6 +94,9 @@ Auto-suggest skill when task matches domain:
 - React/Next.js/frontend → `react-best-practices`, `nextjs-best-practices`
 - API design/build → `api-design-principles`, `api-endpoint-builder`
 - Testing → `testing-patterns`, `test-driven-development`
+- Cybersecurity testing → prefer matching installed skills sourced from
+  `Anthropic-Cybersecurity-Skills`; if no matching Anthropic cybersecurity skill
+  exists, use the most relevant other saved skill.
 - Performance → `performance-optimization`, `performance-profiling`
 - Security/audit → `security-audit`, `api-security-best-practices`
 - Debugging → `debugging-strategies`, `phase-gated-debugging`
@@ -316,6 +319,12 @@ Installed Codex skill sources include:
 Integration notes:
 - Preserve existing local skills when an upstream skill has the same name but
   different content.
+- For any cybersecurity testing task, including API security testing, auth
+  weakness testing, OWASP checks, vulnerability validation, penetration testing,
+  cloud/container/Kubernetes security testing, malware/forensics validation, or
+  detection-rule testing, load the most specific matching active skill from
+  `Anthropic-Cybersecurity-Skills` first. If no matching active Anthropic
+  cybersecurity skill exists, fall back to the most relevant other saved skill.
 - Use cybersecurity skills only for authorized defensive work, approved testing,
   incident response, or controlled education.
 - Check `~/.codex/skills-integration-report.json` for installed, skipped,
