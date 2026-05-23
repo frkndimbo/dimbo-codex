@@ -1,0 +1,39 @@
+# Secrets and local state
+.env
+.env.*
+!.env.example
+auth.json
+history.jsonl
+installation_id
+*.sqlite
+*.sqlite-shm
+*.sqlite-wal
+*.db
+*.pem
+*.key
+*.p12
+*.pfx
+credentials*
+*credential*
+*secret*
+*token*
+privatekey
+publickey
+
+# Runtime/cache/logs
+cache/
+log/
+logs/
+tmp/
+.tmp/
+.cache/
+*.log
+node_modules/
+__pycache__/
+*.pyc
+
+# Local-only backups and vendored source mirrors
+backups/
+vendor/
+skills.review/
+

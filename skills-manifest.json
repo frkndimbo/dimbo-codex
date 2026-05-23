@@ -1,0 +1,25 @@
+{
+  "generated_at": "2026-05-24T04:48:49+07:00",
+  "active_skill_dir": "~/.codex/skills",
+  "review_skill_dir": "~/.codex/skills.review",
+  "sources": [
+    {
+      "name": "antigravity-awesome-skills",
+      "url": "https://github.com/sickn33/antigravity-awesome-skills.git",
+      "scanned_skills": 1465
+    },
+    {
+      "name": "Anthropic-Cybersecurity-Skills",
+      "url": "https://github.com/mukul975/Anthropic-Cybersecurity-Skills.git",
+      "scanned_skills": 754
+    }
+  ],
+  "sync_result": {
+    "installed_new": 909,
+    "duplicates_identical": 1265,
+    "conflicts_quarantined": 34,
+    "skipped_sensitive_name_matches": 11
+  },
+  "conflict_policy": "preserve existing local skill, copy candidate to ~/.codex/skills.review",
+  "security_policy": "cybersecurity skills are for authorized defensive work, approved testing, incident response, or controlled education only"
+}

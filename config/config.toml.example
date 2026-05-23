@@ -1,0 +1,145 @@
+model_reasoning_effort = "xhigh"
+approvals_reviewer = "user"
+personality = "pragmatic"
+plan_mode_reasoning_effort = "xhigh"
+model = "cx/gpt-5.5-xhigh"
+model_provider = "9router"
+
+[mcp_servers.icm]
+command = "/home/d0mb1/.local/bin/icm"
+args = [ "serve" ]
+
+[mcp_servers.context7]
+url = "https://mcp.context7.com/mcp"
+
+[mcp_servers.context7.http_headers]
+CONTEXT7_API_KEY = "REDACTED"
+
+[mcp_servers.paper-search-mcp]
+command = "/home/d0mb1/.local/bin/uvx"
+args = [ "--from", "paper-search-mcp", "python", "-m", "paper_search_mcp.server" ]
+
+[projects."/home/d0mb1"]
+trust_level = "trusted"
+startup_timeout_sec = 60
+
+[projects."/home/d0mb1/Desktop/markasmereka"]
+trust_level = "trusted"
+
+[projects."/home/d0mb1/Desktop/zixon"]
+trust_level = "trusted"
+
+[projects."/home/d0mb1/Desktop"]
+trust_level = "trusted"
+
+[projects."/home/d0mb1/Documents/DNS/h2flood-rl"]
+trust_level = "trusted"
+
+[projects."/home/d0mb1/Documents/Project Sekolah"]
+trust_level = "trusted"
+
+[projects."/home/d0mb1/Desktop/wifi"]
+trust_level = "trusted"
+
+[projects."/home/d0mb1/Downloads/aksesin"]
+trust_level = "trusted"
+
+[projects."/home/d0mb1/Desktop/RAPLUS"]
+trust_level = "trusted"
+
+[projects."/home/d0mb1/Documents/at-tayibah"]
+trust_level = "trusted"
+
+[projects."/home/d0mb1/Desktop/JURNAL-PEPE"]
+trust_level = "trusted"
+
+[projects."/home/d0mb1/Desktop/Checking AI"]
+trust_level = "trusted"
+
+[projects."/home/d0mb1/Documents/OPENER"]
+trust_level = "trusted"
+
+[projects."/home/d0mb1/Desktop/RATIBAH"]
+trust_level = "trusted"
+
+[features]
+memories = true
+multi_agent = true
+terminal_resize_reflow = true
+prevent_idle_sleep = true
+
+[[skills.config]]
+path = "/home/d0mb1/.codex/skills/api-security-best-practices/SKILL.md"
+enabled = false
+
+[tui]
+theme = "coldark-dark"
+
+[tui.model_availability_nux]
+"gpt-5.5" = 4
+
+[notice]
+hide_rate_limit_model_nudge = true
+
+[notice.model_migrations]
+"gpt-5.3-codex" = "cx/gpt-5.3-codex"
+"gpt-5.5" = "cx/gpt-5.5-medium"
+"gpt-5.4" = "cx/gpt-5.4"
+
+[model_providers.omniroute]
+name = "OmniRoute"
+base_url = "http://localhost:20128/api/v1"
+wire_api = "responses"
+env_key = "OPENAI_API_KEY"
+
+[model_providers.9router]
+name = "9Router"
+base_url = "http://127.0.0.1:20128/v1"
+wire_api = "responses"
+
+[agents.subagent]
+model = "cx/gpt-5.3-codex-xhigh"
+
+[hooks.state."/home/d0mb1/.codex/hooks.json:pre_tool_use:0:0"]
+enabled = true
+trusted_hash = "sha256:d2d3f0fca0d8bb5ce4e15b14518881a06da7e6ac0da36136e5cd6093d6ff8507"
+
+[plugins."superpowers@openai-curated"]
+enabled = true
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
