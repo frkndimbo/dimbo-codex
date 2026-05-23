@@ -49,6 +49,18 @@ run cp "$ROOT/RTK.md" "$CODEX_DIR/RTK.md"
 run cp "$ROOT/config/hooks.json" "$CODEX_DIR/hooks.json"
 run cp "$ROOT/config/config.toml.example" "$CODEX_DIR/config.toml.example"
 
+if [[ "$DRY_RUN" == "0" && "$HOME" != "/home/d0mb1" ]]; then
+  python3 - "$HOME" "$CODEX_DIR/AGENTS.md" "$CODEX_DIR/RTK.md" "$CODEX_DIR/config.toml.example" <<'PY'
+from pathlib import Path
+import sys
+home = sys.argv[1]
+for name in sys.argv[2:]:
+    path = Path(name)
+    if path.exists():
+        path.write_text(path.read_text().replace("/home/d0mb1", home))
+PY
+fi
+
 clone_or_update() {
   local url="$1"
   local dst="$2"
@@ -74,4 +86,3 @@ else
 fi
 
 echo "setup complete. merge config.toml.example manually; secrets were not installed."
-
