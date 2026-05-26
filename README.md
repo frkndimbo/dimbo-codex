@@ -18,6 +18,16 @@ Priority layers:
 Conflict rule: higher layers always win. L1 beats L2-L4, L2 beats L3-L4, and L3
 beats L4.
 
+## Professional Warning
+
+This repository is opinionated. Running `scripts/setup.sh` enforces the Dimbo
+Codex policy kernel on the target machine and replaces the user's global Codex
+instruction files plus `~/.codex/config.toml` by default.
+
+Use it professionally only after reviewing the policy docs and the generated
+backup. Existing files are backed up first under `~/.codex/backups/<timestamp>`
+and alongside the original file as `*.backup.<timestamp>`.
+
 ## Contents
 
 - `AGENTS.md`: final global Codex agent instructions.
@@ -49,9 +59,15 @@ cd ~/dimbo-codex
 ./scripts/setup.sh
 ```
 
-`setup.sh` backs up existing policy docs and `hooks.json` before replacing
-them. It does not install real secrets. Merge
-`config/config.toml.example` manually into `~/.codex/config.toml`.
+`setup.sh` backs up existing policy docs, `hooks.json`, and `config.toml` before
+replacing them. It does not install real secrets; any placeholder secret values
+must be replaced manually after install.
+
+To install policy docs while keeping the user's current `config.toml`:
+
+```bash
+./scripts/setup.sh --preserve-config
+```
 
 ## Restore
 
@@ -60,7 +76,8 @@ them. It does not install real secrets. Merge
 ```
 
 Restore reinstalls `AGENTS.md`, `RTK.md`, `SKILLS_POLICY.md`, `WORKFLOW.md`,
-`VERIFY.md`, and `hooks.json` from the selected backup when present.
+`VERIFY.md`, `config.toml`, and `hooks.json` from the selected backup when
+present.
 
 ## Safety
 
