@@ -5,6 +5,7 @@ ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 CODEX_DIR="${CODEX_DIR:-$HOME/.codex}"
 TS="$(date +%Y%m%d-%H%M%S)"
 DRY_RUN=0
+POLICY_FILES=(AGENTS.md RTK.md SKILLS_POLICY.md WORKFLOW.md VERIFY.md)
 
 if [[ "${1:-}" == "--dry-run" ]]; then
   DRY_RUN=1
@@ -40,17 +41,25 @@ require_cmd python3
 
 run mkdir -p "$CODEX_DIR" "$CODEX_DIR/vendor" "$CODEX_DIR/skills"
 
-backup_file "$CODEX_DIR/AGENTS.md"
-backup_file "$CODEX_DIR/RTK.md"
+for file in "${POLICY_FILES[@]}"; do
+  backup_file "$CODEX_DIR/$file"
+done
 backup_file "$CODEX_DIR/hooks.json"
 
-run cp "$ROOT/AGENTS.md" "$CODEX_DIR/AGENTS.md"
-run cp "$ROOT/RTK.md" "$CODEX_DIR/RTK.md"
+for file in "${POLICY_FILES[@]}"; do
+  run cp "$ROOT/$file" "$CODEX_DIR/$file"
+done
 run cp "$ROOT/config/hooks.json" "$CODEX_DIR/hooks.json"
 run cp "$ROOT/config/config.toml.example" "$CODEX_DIR/config.toml.example"
 
 if [[ "$DRY_RUN" == "0" && "$HOME" != "/home/d0mb1" ]]; then
-  python3 - "$HOME" "$CODEX_DIR/AGENTS.md" "$CODEX_DIR/RTK.md" "$CODEX_DIR/config.toml.example" <<'PY'
+  python3 - "$HOME" \
+    "$CODEX_DIR/AGENTS.md" \
+    "$CODEX_DIR/RTK.md" \
+    "$CODEX_DIR/SKILLS_POLICY.md" \
+    "$CODEX_DIR/WORKFLOW.md" \
+    "$CODEX_DIR/VERIFY.md" \
+    "$CODEX_DIR/config.toml.example" <<'PY'
 from pathlib import Path
 import sys
 home = sys.argv[1]

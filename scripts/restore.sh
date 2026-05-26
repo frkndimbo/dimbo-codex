@@ -26,7 +26,9 @@ restore_file() {
 
 restore_file "$SRC/AGENTS.md" "$CODEX_DIR/AGENTS.md"
 restore_file "$SRC/RTK.md" "$CODEX_DIR/RTK.md"
+restore_file "$SRC/SKILLS_POLICY.md" "$CODEX_DIR/SKILLS_POLICY.md"
+restore_file "$SRC/WORKFLOW.md" "$CODEX_DIR/WORKFLOW.md"
+restore_file "$SRC/VERIFY.md" "$CODEX_DIR/VERIFY.md"
 restore_file "$SRC/config/hooks.json" "$CODEX_DIR/hooks.json"
 
 echo "restore complete. pre-restore files saved in $CODEX_DIR/backups/$TS"
-

@@ -1,12 +1,30 @@
 # Dimbo Codex CLI Backup
 
-Safe backup of Codex CLI agent instructions, graphify integration notes, skill
-source locks, and restore scripts.
+Safe backup of Codex CLI agent instructions, policy references, graphify
+integration notes, skill source locks, and restore scripts.
+
+## Dense Policy Model
+
+`AGENTS.md` is the dense kernel. It keeps the operational rules directly in the
+prompt surface while reference docs hold routing detail.
+
+Priority layers:
+
+1. Safety & Harmlessness
+2. Correctness & Honesty
+3. Efficiency & Scalability
+4. Adaptability & Style
+
+Conflict rule: higher layers always win. L1 beats L2-L4, L2 beats L3-L4, and L3
+beats L4.
 
 ## Contents
 
 - `AGENTS.md`: final global Codex agent instructions.
 - `RTK.md`: local RTK command rules.
+- `SKILLS_POLICY.md`: skill, MCP, docs, and web routing.
+- `WORKFLOW.md`: modes, hooks, git, and failure handling.
+- `VERIFY.md`: validation checklist by task type.
 - `config/hooks.json`: non-secret Codex hook config.
 - `config/config.toml.example`: redacted config template. Do not commit real
   `config.toml`.
@@ -31,8 +49,8 @@ cd ~/dimbo-codex
 ./scripts/setup.sh
 ```
 
-`setup.sh` backs up existing `~/.codex/AGENTS.md`, `RTK.md`, and `hooks.json`
-before replacing them. It does not install real secrets. Merge
+`setup.sh` backs up existing policy docs and `hooks.json` before replacing
+them. It does not install real secrets. Merge
 `config/config.toml.example` manually into `~/.codex/config.toml`.
 
 ## Restore
@@ -41,8 +59,10 @@ before replacing them. It does not install real secrets. Merge
 ./scripts/restore.sh ~/.codex/backups/<timestamp>
 ```
 
+Restore reinstalls `AGENTS.md`, `RTK.md`, `SKILLS_POLICY.md`, `WORKFLOW.md`,
+`VERIFY.md`, and `hooks.json` from the selected backup when present.
+
 ## Safety
 
 Never commit raw `~/.codex/config.toml`, `auth.json`, sqlite state, logs,
 history, private keys, API keys, tokens, or `.env` files.
-

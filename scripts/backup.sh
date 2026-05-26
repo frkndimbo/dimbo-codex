@@ -18,6 +18,9 @@ copy_if_exists() {
 
 copy_if_exists "$CODEX_DIR/AGENTS.md" "$OUT/AGENTS.md"
 copy_if_exists "$CODEX_DIR/RTK.md" "$OUT/RTK.md"
+copy_if_exists "$CODEX_DIR/SKILLS_POLICY.md" "$OUT/SKILLS_POLICY.md"
+copy_if_exists "$CODEX_DIR/WORKFLOW.md" "$OUT/WORKFLOW.md"
+copy_if_exists "$CODEX_DIR/VERIFY.md" "$OUT/VERIFY.md"
 copy_if_exists "$CODEX_DIR/hooks.json" "$OUT/config/hooks.json"
 copy_if_exists "$CODEX_DIR/skills-integration-report.json" "$OUT/skills-integration-report.json"
 
@@ -33,4 +36,3 @@ PY
 fi
 
 echo "$OUT"
-
