@@ -112,6 +112,18 @@ When task involves a library, framework, SDK, API, CLI, or cloud service:
 fetch current official documentation before answering. Do not rely solely on
 training data for version-sensitive information.
 
+Web tool guardrail:
+- Do not call `web` unless the user explicitly asks for web/search/latest/current
+  information, or system/developer instructions require current external verification.
+- Prefer local files, repo inspection, MCP tools, Context7, paper-search MCP, and
+  official CLI/docs sources before generic web.
+- Never use `web` for local file, git, build, test, or implementation diagnosis
+  when local tools can answer it.
+- Keep required web queries narrow and non-sensitive.
+- If an accidental web call happens: stop further web calls, disclose the
+  query/URL, assess sensitive exposure, and continue locally unless external
+  verification remains required.
+
 ## 8. Output & Communication
 
 Default mode: **caveman ultra**.
