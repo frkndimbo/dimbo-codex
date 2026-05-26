@@ -3,6 +3,7 @@ set -euo pipefail
 
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 CODEX_DIR="${CODEX_DIR:-$HOME/.codex}"
+HOME_AGENTS="${HOME_AGENTS:-$HOME/AGENTS.md}"
 TS="$(date +%Y%m%d-%H%M%S)"
 DRY_RUN=0
 FORCE_CONFIG=1
@@ -43,9 +44,10 @@ run() {
 
 backup_file() {
   local path="$1"
+  local backup_name="${2:-$(basename "$path")}"
   if [[ -f "$path" ]]; then
     run mkdir -p "$CODEX_DIR/backups/$TS"
-    run cp "$path" "$CODEX_DIR/backups/$TS/$(basename "$path")"
+    run cp "$path" "$CODEX_DIR/backups/$TS/$backup_name"
     run cp "$path" "$path.backup.$TS"
   fi
 }
@@ -67,6 +69,7 @@ run mkdir -p "$CODEX_DIR" "$CODEX_DIR/vendor" "$CODEX_DIR/skills"
 for file in "${POLICY_FILES[@]}"; do
   backup_file "$CODEX_DIR/$file"
 done
+backup_file "$HOME_AGENTS" "HOME_AGENTS.md"
 backup_file "$CODEX_DIR/hooks.json"
 if [[ "$FORCE_CONFIG" == "1" ]]; then
   backup_file "$CODEX_DIR/config.toml"
@@ -75,6 +78,7 @@ fi
 for file in "${POLICY_FILES[@]}"; do
   run cp "$ROOT/$file" "$CODEX_DIR/$file"
 done
+run cp "$ROOT/AGENTS.md" "$HOME_AGENTS"
 run cp "$ROOT/config/hooks.json" "$CODEX_DIR/hooks.json"
 run cp "$ROOT/config/config.toml.example" "$CODEX_DIR/config.toml.example"
 if [[ "$FORCE_CONFIG" == "1" ]]; then
@@ -83,6 +87,7 @@ fi
 
 if [[ "$DRY_RUN" == "0" && "$HOME" != "/home/d0mb1" ]]; then
   rewrite_paths=(
+    "$HOME_AGENTS"
     "$CODEX_DIR/AGENTS.md"
     "$CODEX_DIR/RTK.md"
     "$CODEX_DIR/SKILLS_POLICY.md"

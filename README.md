@@ -3,10 +3,10 @@
 Safe backup of Codex CLI agent instructions, policy references, graphify
 integration notes, skill source locks, and restore scripts.
 
-## Dense Policy Model
+## Compact Policy Model
 
-`AGENTS.md` is the dense kernel. It keeps the operational rules directly in the
-prompt surface while reference docs hold routing detail.
+`AGENTS.md` is the compact kernel. It keeps only the highest-impact operating
+rules in the prompt surface while reference docs hold routing detail.
 
 Priority layers:
 
@@ -30,7 +30,7 @@ and alongside the original file as `*.backup.<timestamp>`.
 
 ## Contents
 
-- `AGENTS.md`: final global Codex agent instructions.
+- `AGENTS.md`: compact global Codex agent instructions.
 - `RTK.md`: local RTK command rules.
 - `SKILLS_POLICY.md`: skill, MCP, docs, and web routing.
 - `WORKFLOW.md`: modes, hooks, git, and failure handling.
@@ -60,8 +60,10 @@ cd ~/dimbo-codex
 ```
 
 `setup.sh` backs up existing policy docs, `hooks.json`, and `config.toml` before
-replacing them. It does not install real secrets; any placeholder secret values
-must be replaced manually after install.
+replacing them. It installs `AGENTS.md` to both `$HOME/AGENTS.md` and
+`$HOME/.codex/AGENTS.md` so global behavior works from home and Codex config
+surfaces. It does not install real secrets; any placeholder secret values must
+be replaced manually after install.
 
 To install policy docs while keeping the user's current `config.toml`:
 
@@ -75,9 +77,9 @@ To install policy docs while keeping the user's current `config.toml`:
 ./scripts/restore.sh ~/.codex/backups/<timestamp>
 ```
 
-Restore reinstalls `AGENTS.md`, `RTK.md`, `SKILLS_POLICY.md`, `WORKFLOW.md`,
-`VERIFY.md`, `config.toml`, and `hooks.json` from the selected backup when
-present.
+Restore reinstalls `$HOME/AGENTS.md`, `$HOME/.codex/AGENTS.md`, `RTK.md`,
+`SKILLS_POLICY.md`, `WORKFLOW.md`, `VERIFY.md`, `config.toml`, and `hooks.json`
+from the selected backup when present.
 
 ## Safety
 
