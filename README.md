@@ -1,58 +1,48 @@
-# Dimbo Codex CLI Backup
+# Dimbo Codex Config Template
 
-Safe backup of Codex CLI agent instructions, policy references, graphify
-integration notes, skill source locks, and restore scripts.
+A hardened, portable Codex CLI configuration template for people who want Codex
+to behave consistently across projects, machines, and fresh sessions.
 
-## Compact Policy Model
+This repo is recommended when you want a practical Codex baseline instead of a
+loose collection of prompts: safety rules, shell discipline, skill routing,
+verification habits, backup/restore scripts, and non-secret config templates are
+kept together and installed in a repeatable way.
 
-`AGENTS.md` is the compact kernel. It keeps only the highest-impact operating
-rules in the prompt surface while reference docs hold routing detail.
+## Why Use This Template
 
-Priority layers:
+- **Consistent agent behavior**: installs the same global instruction kernel into
+  both `$HOME/AGENTS.md` and `$HOME/.codex/AGENTS.md`, reducing directory-specific
+  drift.
+- **Safe by default**: backs up existing files first, preserves existing
+  `~/.codex/config.toml` by default, and never stores real secrets.
+- **Operational, not decorative**: rules cover real failure points: destructive
+  actions, dirty git worktrees, stale memory, version-sensitive docs, verification,
+  and rollback notes.
+- **RTK-first shell discipline**: all agent shell work is routed through `rtk`,
+  with explicit patterns for compact reads, searches, git, curl, and complex
+  shell commands.
+- **Skill routing without chaos**: keeps `$HOME/.codex/skills` as the canonical
+  active skill root, treats `$HOME/.agents/skills` as legacy, and includes a
+  read-only hygiene checker for duplicate or broken skills.
+- **Portable onboarding**: one dry run, one install command, optional external
+  skill sync, and a restore script if you need to roll back.
 
-1. Safety & Harmlessness
-2. Correctness & Honesty
-3. Efficiency & Scalability
-4. Adaptability & Style
+## What You Get
 
-Conflict rule: higher layers always win. L1 beats L2-L4, L2 beats L3-L4, and L3
-beats L4.
+| Area | File | Purpose |
+| --- | --- | --- |
+| Global agent kernel | `AGENTS.md` | Compact rules Codex should see in every project |
+| Shell policy | `RTK.md` | Mandatory `rtk` usage and command patterns |
+| Skill/docs routing | `SKILLS_POLICY.md` | When to use skills, MCPs, docs, and web lookup |
+| Workflow policy | `WORKFLOW.md` | Modes, hooks, git rules, and retry discipline |
+| Verification policy | `VERIFY.md` | Build/test/check expectations by task type |
+| Codex config template | `config/config.toml.example` | Redacted, non-secret starting point |
+| Hooks config | `config/hooks.json` | Non-secret hook config |
+| Installer | `scripts/setup.sh` | Apply this template to a Codex install |
+| Backup/restore | `scripts/backup.sh`, `scripts/restore.sh` | Save or restore local Codex policy files |
+| Skill hygiene | `scripts/check_skill_hygiene.py` | Check active skills for duplicate names and broken refs |
 
-## Professional Warning
-
-This repository is opinionated. Running `scripts/setup.sh` enforces the Dimbo
-Codex policy kernel on the target machine and replaces the user's global Codex
-instruction files. Existing `~/.codex/config.toml` is preserved by default.
-
-Use it professionally only after reviewing the policy docs and the generated
-backup. Existing files are backed up first under `~/.codex/backups/<timestamp>`
-and alongside the original file as `*.backup.<timestamp>`.
-
-## Contents
-
-- `AGENTS.md`: compact global Codex agent instructions.
-- `RTK.md`: local RTK command rules.
-- `SKILLS_POLICY.md`: skill, MCP, docs, and web routing.
-- `WORKFLOW.md`: modes, hooks, git, and failure handling.
-- `VERIFY.md`: validation checklist by task type.
-- `config/hooks.json`: non-secret Codex hook config.
-- `config/config.toml.example`: redacted config template. Do not commit real
-  `config.toml`.
-- `sources.lock.json`: source repo commits, sync counts, graph tool decision.
-- `scripts/setup.sh`: reinstall on another device.
-- `scripts/backup.sh`: create local backup from an existing Codex install.
-- `scripts/restore.sh`: restore from a local backup.
-- `scripts/check_skill_hygiene.py`: read-only active skill sanity check.
-
-## Dependencies
-
-- Codex CLI config directory at `~/.codex`.
-- Canonical active skill root at `~/.codex/skills`; `~/.agents/skills` is legacy/non-active.
-- `python3`, `cp`, `mkdir`, `find`; `git` for clone or `--with-skills`.
-- `rtk` recommended for manual agent commands.
-- Optional: `uv` or `uvx` if reinstalling `graphifyy` and paper-search MCP.
-
-## Reapply On A New Device
+## Quick Start
 
 ```bash
 git clone https://github.com/frkndimbo/dimbo-codex.git ~/dimbo-codex
@@ -61,36 +51,64 @@ cd ~/dimbo-codex
 ./scripts/setup.sh
 ```
 
-`setup.sh` backs up existing policy docs and `hooks.json` before replacing them.
-It installs `AGENTS.md` to both `$HOME/AGENTS.md` and `$HOME/.codex/AGENTS.md`
-so global behavior works from home and Codex config surfaces. Existing
-`config.toml` is preserved; on a fresh machine, the redacted template is copied
-once. It does not install real secrets; placeholder values must be replaced
-manually after install.
+The default install replaces global instruction files, backs them up first, and
+preserves an existing `~/.codex/config.toml`. On a fresh machine, it creates
+`config.toml` from the redacted template so Codex has a usable starting point.
 
-To force the redacted config template over an existing `config.toml`:
+## Recommended Install Modes
 
-```bash
-./scripts/setup.sh --force-config
-```
+| Goal | Command |
+| --- | --- |
+| Preview changes | `./scripts/setup.sh --dry-run` |
+| Install policy docs safely | `./scripts/setup.sh` |
+| Replace existing Codex config with the template | `./scripts/setup.sh --force-config` |
+| Install/update external skill sources too | `./scripts/setup.sh --with-skills` |
+| Restore a previous backup | `./scripts/restore.sh ~/.codex/backups/<timestamp>` |
 
-To also install/update external skill sources:
+Use `--with-skills` only after reviewing the external skill impact. The normal
+install intentionally skips network/vendor skill sync so the template applies
+cleanly on more machines.
 
-```bash
-./scripts/setup.sh --with-skills
-```
+## Why It Works Well As A Codex Baseline
 
-## Restore
+Most Codex setups fail quietly in predictable places: instructions only apply in
+one directory, shell commands drift from local policy, config files leak machine
+specific state, skill folders duplicate each other, or agents skip verification
+after edits. This template addresses those failure modes directly:
 
-```bash
-./scripts/restore.sh ~/.codex/backups/<timestamp>
-```
+- two global instruction surfaces are installed and kept aligned;
+- real secrets and runtime state are excluded from git;
+- `config.toml` is treated as local state unless explicitly forced;
+- skills have one active root and a hygiene check;
+- setup and restore are scripted instead of manual copy-paste;
+- the README, policies, and installer describe the same behavior.
 
-Restore reinstalls `$HOME/AGENTS.md`, `$HOME/.codex/AGENTS.md`, `RTK.md`,
-`SKILLS_POLICY.md`, `WORKFLOW.md`, `VERIFY.md`, `config.toml`, and `hooks.json`
-from the selected backup when present.
+## Safety Model
 
-## Safety
+This repo is intentionally opinionated. Review the policy files before applying
+it to a machine you share with other users or teams.
+
+The installer backs up existing policy docs, `hooks.json`, and config files when
+they are about to be replaced. Backups are stored under
+`~/.codex/backups/<timestamp>` and beside originals as `*.backup.<timestamp>`.
 
 Never commit raw `~/.codex/config.toml`, `auth.json`, sqlite state, logs,
 history, private keys, API keys, tokens, or `.env` files.
+
+## Requirements
+
+- Codex CLI using `~/.codex`.
+- `python3`, `cp`, `mkdir`, `find`.
+- `git` for cloning this repo or running `--with-skills`.
+- `rtk` is recommended for interactive agent shell work.
+- Optional: `uv` or `uvx` for Python tool installs such as MCP helpers.
+
+## Verify After Install
+
+```bash
+python3 scripts/check_skill_hygiene.py
+codex debug prompt-input
+```
+
+`codex debug prompt-input` is the fastest way to confirm Codex actually sees the
+global `AGENTS.md` instructions from a fresh session and a non-project directory.
