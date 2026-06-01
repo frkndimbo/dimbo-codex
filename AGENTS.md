@@ -71,7 +71,8 @@ Purpose: compact operating kernel for Codex on this host.
 ## Git
 
 - Use Conventional Commits: `<type>(<scope>): <description>`, subject max 50 chars.
-- AI commits MUST include `Co-Authored-By: Codex <noreply@openai.com>`.
+- Git commits MUST use author `frkndimbo <da.purplecats@gmail.com>`.
+- Do not add co-author trailers.
 - Stage specific files only; never `git add .` blindly.
 - Prefer new commits over amend.
 - Never force-push without explicit permission.

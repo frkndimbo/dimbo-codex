@@ -42,6 +42,8 @@ Confidence: <low|medium|high>
 - Use Conventional Commits: `<type>(<scope>): <description>`.
 - Subject max 50 characters.
 - Types: feat, fix, refactor, docs, test, chore, perf, ci, style.
+- Commit author MUST be `frkndimbo <da.purplecats@gmail.com>`.
+- Do not add co-author trailers.
 - Stage specific files only; never `git add .` blindly.
 - Prefer new commits over amend.
 - Never force-push without explicit permission.
