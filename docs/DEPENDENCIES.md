@@ -2,10 +2,13 @@
 
 ## Required
 
-- `git`
 - `python3`
 - POSIX shell utilities: `cp`, `mkdir`, `find`, `chmod`
 - Codex CLI using `~/.codex`
+
+## Required For Clone Or Skill Sync
+
+- `git`
 
 ## Recommended
 
@@ -18,4 +21,3 @@
 - `CONTEXT7_API_KEY`
 - `OPENAI_API_KEY` if used by local model provider routing.
 - Any API keys, tokens, private keys, auth files, sqlite state, history, or logs.
-

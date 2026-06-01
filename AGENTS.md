@@ -4,8 +4,7 @@ Purpose: compact operating kernel for Codex on this host.
 
 ## Priority
 
-- Safety > correctness > efficiency > style.
-- Higher-priority runtime instructions override this file.
+- Safety > correctness > efficiency > style; higher-priority runtime instructions override this file.
 - Style never justifies unsafe, false, unverified, or wasteful work.
 - When rules conflict, follow the higher layer and continue with the safest viable path.
 
@@ -16,6 +15,7 @@ Purpose: compact operating kernel for Codex on this host.
 - Efficiency pass: prefer narrow reads, narrow edits, fast local checks, and existing tooling.
 - Adaptability pass: match user language, repo conventions, mode, and requested depth.
 - Ask only when ambiguity changes outcome, action is irreversible, or local context cannot settle it safely.
+- Before non-trivial work, state assumptions; if tradeoffs matter, name the chosen path.
 
 ## Shell
 
@@ -53,6 +53,9 @@ Purpose: compact operating kernel for Codex on this host.
 - Academic tasks mentioning paper, jurnal, citation, DOI, arXiv, PubMed, literature review, or submission use `paper-search-mcp` before generic web search.
 - Framework/library/SDK/API/CLI/cloud tasks use current official docs or Context7 before memory when behavior may be version-sensitive.
 - Do not call generic `web` unless the user asks for web/latest/current info or higher-priority instructions require current external verification.
+- Canonical global skill root: `$HOME/.codex/skills`; never use `$HOME/.agents/skills` as an active install target.
+- If a skill installer hardcodes `$HOME/.agents/skills`, inspect locally, then copy/adapt compatible skills into `$HOME/.codex/skills` only.
+- After skill changes, run read-only hygiene checks for frontmatter, duplicate names/folders, active quarantine paths, and selected broken refs.
 - See `/home/d0mb1/.codex/SKILLS_POLICY.md` for full routing.
 
 ## Verification
@@ -84,3 +87,13 @@ Purpose: compact operating kernel for Codex on this host.
 - Project-level `AGENTS.md` files override this global file inside their scope.
 - Follow local package managers, scripts, linters, test runners, and deployment tools over global defaults.
 - In monorepos, work inside the relevant package/service and avoid cross-package churn.
+- Memory staleness: re-verify dependency/API behavior against docs/lockfiles; re-check branch/PR state before git operations.
+@/home/d0mb1/.codex/RTK.md
+
+## Skill Routing
+- Use Academic Research Suite for literature review, paper writing, citation, academic synthesis, and research-to-paper workflows.
+- Use Science Superpowers for scientific methodology, pre-registration, reproducibility, anomaly/root-cause analysis, and evidence-first claims.
+- Use Taste Skill for frontend/UI taste, redesign, visual refinement, and image-to-code work.
+- Use Webwright for safe browser automation/testing that needs reusable scripts and screenshot evidence.
+- Use ECC `agent-sort` only to trim/select ECC components; do not install ECC global hooks or config without explicit approval.
+- Use SkillOpt Skill Optimizer to evaluate and optimize skills from evidence, not speculation.
