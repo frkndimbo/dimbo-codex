@@ -9,7 +9,7 @@ Date: 2026-05-24
 - Runtime config: `~/.codex/config.toml`.
 - Hooks: `~/.codex/hooks.json`.
 - Active skills: `~/.codex/skills`.
-- Existing additional skill root: `~/.agents/skills`.
+- Legacy/non-active skill root observed: `~/.agents/skills`; do not install active skills there.
 - Local backup created before edits:
   - `~/.codex/AGENTS.md.backup.20260524-044849`
   - `~/.codex/backups/20260524-044849/`
@@ -35,4 +35,3 @@ Date: 2026-05-24
   - 34 conflicting same-name skills copied to `~/.codex/skills.review`.
   - 11 candidates skipped due sensitive-looking file names.
 - Detailed local report: `~/.codex/skills-integration-report.json`.
-

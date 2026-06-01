@@ -5,6 +5,7 @@
 - Use project scripts when present; otherwise use language/tool defaults.
 - Fix feasible failures before final response.
 - If no build/test system exists, state `no build verification available`.
+- If checks partially fail, report the exact failed commands, whether failure is pre-existing or introduced, and suspected cause. Do not report partial pass as full pass.
 
 ## Default Commands
 - Bun projects: `rtk bun test`, `rtk bun run check`, `rtk bun run build` when scripts exist.
@@ -17,7 +18,7 @@
 - Verify paths before writing outside the current project.
 - Make a backup before overwriting important files.
 - After file creation or edit, confirm existence and inspect relevant content.
-- Use `apply_patch` for manual tracked-file edits.
+- For tracked-file edits, use `apply_patch` when available; avoid rewrite-style shell edits unless patching is unavailable and the change is narrowly targeted.
 
 ## Research And Docs
 - Cite sources used.
@@ -36,5 +37,6 @@
 
 ## Completion Report
 - Summarize changed files.
-- Report commands run and pass/fail status.
+- Report commands run and pass/fail status, including partial failures with cause.
+- State assumptions made during verification that could affect validity.
 - State any skipped verification and why.

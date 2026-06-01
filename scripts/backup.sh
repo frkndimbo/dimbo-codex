@@ -3,6 +3,7 @@ set -euo pipefail
 
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 CODEX_DIR="${CODEX_DIR:-$HOME/.codex}"
+HOME_AGENTS="${HOME_AGENTS:-$HOME/AGENTS.md}"
 TS="$(date +%Y%m%d-%H%M%S)"
 OUT="$ROOT/backups/$TS"
 
@@ -17,6 +18,7 @@ copy_if_exists() {
 }
 
 copy_if_exists "$CODEX_DIR/AGENTS.md" "$OUT/AGENTS.md"
+copy_if_exists "$HOME_AGENTS" "$OUT/HOME_AGENTS.md"
 copy_if_exists "$CODEX_DIR/RTK.md" "$OUT/RTK.md"
 copy_if_exists "$CODEX_DIR/SKILLS_POLICY.md" "$OUT/SKILLS_POLICY.md"
 copy_if_exists "$CODEX_DIR/WORKFLOW.md" "$OUT/WORKFLOW.md"

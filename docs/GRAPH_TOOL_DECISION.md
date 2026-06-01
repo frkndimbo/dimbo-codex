@@ -7,7 +7,8 @@
 - Source: https://github.com/safishamsi/graphify.
 - Existing Codex hook: `~/.codex/hooks.json` injects graphify context when
   `graphify-out/graph.json` exists.
-- Existing skill: `~/.agents/skills/graphify`.
+- Legacy/non-active skill payload observed: `~/.agents/skills/graphify`.
+- Active skill installs must use `~/.codex/skills`; do not run installers that target `~/.agents/skills` as-is.
 
 ## Comparison
 
@@ -23,4 +24,3 @@
 
 Keep `graphify`. Do not install `codegraph` now. Revisit only if a future task
 needs codegraph-specific behavior and a rollback plan exists.
-

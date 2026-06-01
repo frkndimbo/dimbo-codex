@@ -3,10 +3,10 @@
 Safe backup of Codex CLI agent instructions, policy references, graphify
 integration notes, skill source locks, and restore scripts.
 
-## Dense Policy Model
+## Compact Policy Model
 
-`AGENTS.md` is the dense kernel. It keeps the operational rules directly in the
-prompt surface while reference docs hold routing detail.
+`AGENTS.md` is the compact kernel. It keeps only the highest-impact operating
+rules in the prompt surface while reference docs hold routing detail.
 
 Priority layers:
 
@@ -22,7 +22,7 @@ beats L4.
 
 This repository is opinionated. Running `scripts/setup.sh` enforces the Dimbo
 Codex policy kernel on the target machine and replaces the user's global Codex
-instruction files plus `~/.codex/config.toml` by default.
+instruction files. Existing `~/.codex/config.toml` is preserved by default.
 
 Use it professionally only after reviewing the policy docs and the generated
 backup. Existing files are backed up first under `~/.codex/backups/<timestamp>`
@@ -30,7 +30,7 @@ and alongside the original file as `*.backup.<timestamp>`.
 
 ## Contents
 
-- `AGENTS.md`: final global Codex agent instructions.
+- `AGENTS.md`: compact global Codex agent instructions.
 - `RTK.md`: local RTK command rules.
 - `SKILLS_POLICY.md`: skill, MCP, docs, and web routing.
 - `WORKFLOW.md`: modes, hooks, git, and failure handling.
@@ -42,11 +42,13 @@ and alongside the original file as `*.backup.<timestamp>`.
 - `scripts/setup.sh`: reinstall on another device.
 - `scripts/backup.sh`: create local backup from an existing Codex install.
 - `scripts/restore.sh`: restore from a local backup.
+- `scripts/check_skill_hygiene.py`: read-only active skill sanity check.
 
 ## Dependencies
 
 - Codex CLI config directory at `~/.codex`.
-- `git`, `python3`, `cp`, `mkdir`, `find`.
+- Canonical active skill root at `~/.codex/skills`; `~/.agents/skills` is legacy/non-active.
+- `python3`, `cp`, `mkdir`, `find`; `git` for clone or `--with-skills`.
 - `rtk` recommended for manual agent commands.
 - Optional: `uv` or `uvx` if reinstalling `graphifyy` and paper-search MCP.
 
@@ -59,14 +61,23 @@ cd ~/dimbo-codex
 ./scripts/setup.sh
 ```
 
-`setup.sh` backs up existing policy docs, `hooks.json`, and `config.toml` before
-replacing them. It does not install real secrets; any placeholder secret values
-must be replaced manually after install.
+`setup.sh` backs up existing policy docs and `hooks.json` before replacing them.
+It installs `AGENTS.md` to both `$HOME/AGENTS.md` and `$HOME/.codex/AGENTS.md`
+so global behavior works from home and Codex config surfaces. Existing
+`config.toml` is preserved; on a fresh machine, the redacted template is copied
+once. It does not install real secrets; placeholder values must be replaced
+manually after install.
 
-To install policy docs while keeping the user's current `config.toml`:
+To force the redacted config template over an existing `config.toml`:
 
 ```bash
-./scripts/setup.sh --preserve-config
+./scripts/setup.sh --force-config
+```
+
+To also install/update external skill sources:
+
+```bash
+./scripts/setup.sh --with-skills
 ```
 
 ## Restore
@@ -75,9 +86,9 @@ To install policy docs while keeping the user's current `config.toml`:
 ./scripts/restore.sh ~/.codex/backups/<timestamp>
 ```
 
-Restore reinstalls `AGENTS.md`, `RTK.md`, `SKILLS_POLICY.md`, `WORKFLOW.md`,
-`VERIFY.md`, `config.toml`, and `hooks.json` from the selected backup when
-present.
+Restore reinstalls `$HOME/AGENTS.md`, `$HOME/.codex/AGENTS.md`, `RTK.md`,
+`SKILLS_POLICY.md`, `WORKFLOW.md`, `VERIFY.md`, `config.toml`, and `hooks.json`
+from the selected backup when present.
 
 ## Safety
 
