@@ -1,0 +1,41 @@
+{
+  "generated_at": "2026-05-24T04:48:49+07:00",
+  "backup_timestamp": "20260524-044849",
+  "codex_config_root": "/home/d0mb1/.codex",
+  "source_repos": [
+    {
+      "name": "antigravity-awesome-skills",
+      "url": "https://github.com/sickn33/antigravity-awesome-skills.git",
+      "commit": "837a882f84bb1281a0fa3f19ef03a2216b3ec38a",
+      "local_path": null,
+      "archive_path": "~/.codex/vendor/archives/antigravity-awesome-skills-2026-06-12.tar.gz",
+      "archive_sha256": "b5eb3529900773e017b9d30cc74b26b180ffc31b46b2e4fdd080771f2e5f9eea"
+    },
+    {
+      "name": "Anthropic-Cybersecurity-Skills",
+      "url": "https://github.com/mukul975/Anthropic-Cybersecurity-Skills.git",
+      "commit": "0f429d0f96ee70d2a6c259c4ecc6c6e18e0d23ff",
+      "local_path": null,
+      "archive_path": "~/.codex/vendor/archives/Anthropic-Cybersecurity-Skills-2026-06-12.tar.gz",
+      "archive_sha256": "2f59f685ef5b7ec0ea4e974f3a67f893f92d6c4484608654b7dc2d0f6ee59401"
+    }
+  ],
+  "skill_sync": {
+    "installed_new": 909,
+    "duplicates_identical": 1265,
+    "conflicts_quarantined": 34,
+    "skipped_sensitive_name_matches": 11,
+    "report_path": "~/.codex/skills-integration-report.json"
+  },
+  "graph_tool": {
+    "active": "graphify",
+    "package": "graphifyy",
+    "version": "0.8.13",
+    "binary": "~/.local/bin/graphify",
+    "source": "https://github.com/safishamsi/graphify",
+    "reviewed_alternative": "https://github.com/colbymchenry/codegraph",
+    "decision": "keep graphify; codegraph not installed"
+  },
+  "archived_at": "2026-06-12T00:00:00+07:00",
+  "archive_policy": "Original vendor working trees replaced by verified tar.gz archives; active skills remain copied under ~/.codex/skills."
+}
