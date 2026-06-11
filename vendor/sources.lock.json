@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-24T04:48:49+07:00",
+  "generated_at": "2026-06-12T00:00:00+07:00",
   "backup_timestamp": "20260524-044849",
   "codex_config_root": "/home/d0mb1/.codex",
   "source_repos": [
@@ -18,6 +18,51 @@
       "local_path": null,
       "archive_path": "~/.codex/vendor/archives/Anthropic-Cybersecurity-Skills-2026-06-12.tar.gz",
       "archive_sha256": "2f59f685ef5b7ec0ea4e974f3a67f893f92d6c4484608654b7dc2d0f6ee59401"
+    },
+    {
+      "name": "addyosmani-agent-skills",
+      "url": "https://github.com/addyosmani/agent-skills.git",
+      "commit": "d187883b7d761265309cdcc0f202cc76b4b3fb06",
+      "local_path": null,
+      "archive_path": null,
+      "archive_sha256": null,
+      "accepted_skills": [
+        "api-and-interface-design",
+        "browser-testing-with-devtools",
+        "ci-cd-and-automation",
+        "code-review-and-quality",
+        "code-simplification",
+        "context-engineering",
+        "debugging-and-error-recovery",
+        "deprecation-and-migration",
+        "documentation-and-adrs",
+        "doubt-driven-development",
+        "frontend-ui-engineering",
+        "idea-refine",
+        "incremental-implementation",
+        "observability-and-instrumentation",
+        "performance-optimization",
+        "security-and-hardening",
+        "shipping-and-launch",
+        "source-driven-development",
+        "spec-driven-development",
+        "test-driven-development"
+      ],
+      "skipped_skills": {
+        "git-workflow-and-versioning": "local WORKFLOW.md git rules are stricter and safer",
+        "interview-me": "not aligned with active host work profile; general model can handle without skill",
+        "planning-and-task-breakdown": "runtime Plan mode and WORKFLOW.md already provide safer planning behavior",
+        "using-agent-skills": "SKILLS_POLICY.md and system skill routing are more specific to this host"
+      },
+      "excluded_paths": [
+        "hooks/",
+        "commands/",
+        "agents/",
+        ".claude/",
+        ".claude-plugin/",
+        ".gemini/",
+        ".opencode/"
+      ]
     }
   ],
   "skill_sync": {
@@ -37,5 +82,11 @@
     "decision": "keep graphify; codegraph not installed"
   },
   "archived_at": "2026-06-12T00:00:00+07:00",
-  "archive_policy": "Original vendor working trees replaced by verified tar.gz archives; active skills remain copied under ~/.codex/skills."
+  "archive_policy": "Original vendor working trees replaced by verified tar.gz archives; active skills remain copied under ~/.codex/skills.",
+  "last_updated": "2026-06-12T00:00:00+07:00",
+  "skill_prune": {
+    "hard_delete_manifest": "~/.codex/skill-delete-manifest-2026-06-12.json",
+    "deleted_entries": 481,
+    "policy": "hard-delete redundant inactive/gated skills after explicit user confirmation; keep protected active packs"
+  }
 }

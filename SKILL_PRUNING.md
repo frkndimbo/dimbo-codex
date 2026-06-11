@@ -435,3 +435,22 @@ Rationale: paper, fullstack, and Linux host maintenance are frequent work modes 
 - `performing-disk-forensics-investigation`
 - `performing-network-forensics-with-wireshark`
 
+## Hard Delete Prune - 2026-06-12
+
+Policy: hard delete after explicit user confirmation. Manifest with pre-delete hashes: `skill-delete-manifest-2026-06-12.json`.
+
+Rationale: remove skill payloads that are inactive, gated/offensive, redundant with stronger active packs, or worse than local policy. This reduces trigger noise and keeps active skills focused on paper, fullstack, Linux host ops, defensive security, agent management, frontend/UI, Python/ML, JS/TS, Rust/C/C++/Go, marketing, and SEO.
+
+Deleted: 481 entries.
+
+### Deleted Groups
+- `skills.review/*`: inactive review quarantine from prior pruning; covered by active protected packs or general model capability with docs/tools.
+- `skills.gated/security-offensive/*`: offensive/pentest payloads; safer to rely on explicit authorization, current policy, and targeted docs when needed.
+- `skills/git-pushing`: active helper was worse than local policy because its script used bare `git add .` and bare `git push`.
+- `skills/security` and `skills/skills`: empty active directories.
+
+### Addy Osmani Agent Skills Import
+- Source: `https://github.com/addyosmani/agent-skills`
+- Commit: `d187883b7d761265309cdcc0f202cc76b4b3fb06`
+- Accepted tracked skills: `api-and-interface-design`, `browser-testing-with-devtools`, `ci-cd-and-automation`, `code-review-and-quality`, `code-simplification`, `context-engineering`, `debugging-and-error-recovery`, `deprecation-and-migration`, `documentation-and-adrs`, `doubt-driven-development`, `frontend-ui-engineering`, `idea-refine`, `incremental-implementation`, `observability-and-instrumentation`, `performance-optimization`, `security-and-hardening`, `shipping-and-launch`, `source-driven-development`, `spec-driven-development`, `test-driven-development`.
+- Skipped: `git-workflow-and-versioning`, `interview-me`, `planning-and-task-breakdown`, `using-agent-skills`.
