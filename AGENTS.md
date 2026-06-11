@@ -50,7 +50,7 @@ Purpose: compact operating kernel for Codex on this host.
 - Use `agents-md` for AGENTS docs; `paper-search-mcp` for academic paper work; Context7/official docs for version-sensitive SDK/API/CLI/cloud work.
 - Generic `web` only when requested/required; active skill root is `$HOME/.codex/skills`.
 - Offensive/pentest/red-team skills require explicit authorization and scope.
-- After skill changes, run frontmatter, duplicate-name, quarantine, and broken-ref hygiene checks.
+- After skill changes, run hygiene checks; see `/home/d0mb1/.codex/SKILLS_POLICY.md`.
 
 ## Verification
 - After code changes, run relevant build/lint/test/check commands; fix feasible failures before final.

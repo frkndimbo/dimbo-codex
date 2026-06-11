@@ -392,3 +392,46 @@ Skipped: 0
 - `wordpress-centric-high-seo-optimized-blogwriting-skill` -> `skills.review/wordpress-centric-high-seo-optimized-blogwriting-skill`
 - `x402-express-wrapper` -> `skills.review/x402-express-wrapper`
 - `zarr-python` -> `skills.review/zarr-python`
+
+
+## Restored Core Work Packs - 2026-06-12
+
+Policy: reversible restore from `skills.review/` to `skills/`; no hard delete.
+
+Rationale: paper, fullstack, and Linux host maintenance are frequent work modes on this host. These helpers remain active defaults while niche offensive, malware, vendor, and low-frequency skills stay in review.
+
+### Paper Pack
+- `peer-review`
+- `scholar-evaluation`
+- `setting-up-reproducible-analysis`
+- `pdf-conversion-router`
+- `scientific-brainstorming`
+
+### Fullstack Pack
+- `nextjs-supabase-auth`
+- `supabase-automation`
+- `drizzle-orm-expert`
+- `prisma-expert`
+- `neon-postgres`
+- `react-best-practices`
+- `react-patterns`
+- `react-ui-patterns`
+- `tailwind-design-system`
+- `tailwind-patterns`
+- `nodejs-best-practices`
+- `javascript-testing-patterns`
+- `security-scanning-security-dependencies`
+- `security-scanning-security-hardening`
+- `security-scanning-security-sast`
+- `testing-for-xss-vulnerabilities`
+
+### Linux Host Ops Pack
+- `linux-host-ops` added as a local active skill.
+- `posix-shell-pro`
+- `analyzing-linux-system-artifacts`
+- `analyzing-linux-audit-logs-for-intrusion`
+- `analyzing-persistence-mechanisms-in-linux`
+- `performing-linux-log-forensics-investigation`
+- `performing-disk-forensics-investigation`
+- `performing-network-forensics-with-wireshark`
+

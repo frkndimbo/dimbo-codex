@@ -37,6 +37,13 @@
 - Prefer local repo docs, official docs, Context7, MCP tools, and CLIs before generic web.
 - Use generic web only when explicitly requested or current external verification is required.
 
+
+## Protected Active Packs
+- Paper pack stays active: `academic-research-suite`, `peer-review`, `scholar-evaluation`, `setting-up-reproducible-analysis`, `pdf-conversion-router`, `scientific-brainstorming`, citation/literature helpers.
+- Fullstack pack stays active: core API/backend/frontend skills plus Supabase, ORM, React, Tailwind, Node/JS testing, and security-scanning helpers.
+- Linux host ops pack stays active: `linux-host-ops`, bash/Linux troubleshooting, POSIX shell, Linux artifacts/log/audit/persistence helpers, disk/network forensics, Docker/Kubernetes/devops/hardening helpers.
+- Do not move these protected packs to `skills.review` unless the user explicitly requests a project-profile pruning pass and accepts reduced coverage.
+
 ## Skill Hygiene
 - Keep `AGENTS.md` concise; do not list installed skill directories there.
 - Canonical global active skill root is `$HOME/.codex/skills`.
