@@ -94,9 +94,6 @@ ls ~/.codex/backups
 
 Salin kembali file yang diperlukan dari `~/.codex/backups/<timestamp>`.
 
-## Catatan Contributor
-
-Commit repo ini harus memakai author:
 
 ```text
 frkndimbo <da.purplecats@gmail.com>
