@@ -2,7 +2,7 @@
 
 **Usage**: Token-optimized CLI proxy for shell commands.
 
-Current local version: `rtk 0.42.3`.
+Current local version: `rtk 0.43.0`.
 
 ## Rule
 
@@ -58,7 +58,7 @@ rtk proxy <cmd>           # Run raw command without filtering
 
 ```bash
 rtk --version
-# expected: rtk 0.42.3
+# expected: rtk 0.43.0
 rtk --ultra-compact -v gain
 rtk proxy which rtk
 ```

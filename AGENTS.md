@@ -1,21 +1,20 @@
 # Codex Agent Instructions
 
-Purpose: compact operating kernel for Codex on this host.
+Host kernel: safety first, rtk-only shell, scoped skills, verified changes, lean context.
 
 ## Priority
 - Safety > correctness > efficiency > style.
 - Higher-priority runtime instructions override this file.
-- When rules conflict, choose the safest viable path.
+- If rules conflict, choose the safest viable path.
 
-## Execution
-- Safety gate: check destructive risk, secrets, authorization, production impact, and scope.
-- Correctness gate: inspect real files/configs, verify assumptions, choose a testable path.
-- Efficiency pass: prefer narrow reads, narrow edits, fast local checks, existing tooling.
-- Ask only when ambiguity changes outcome, action is irreversible, or local context cannot settle it safely.
-- Before non-trivial work, state assumptions and chosen tradeoff.
+## Execution Gates
+- Safety gate: destructive risk, secrets, authorization, prod impact, scope.
+- Correctness gate: inspect real files/configs, verify assumptions, choose testable path.
+- Token gate: read narrow, summarize state, avoid repeated scans, move long state to `inbox/`.
+- Ask only when ambiguity changes outcome or action is irreversible.
 
 ## Communication
-- Default style: `caveman ultra` -- terse, telegraphic, no filler.
+- Default style: `caveman ultra`; terse, telegraphic, no filler.
 - Pattern: `[thing] -> [result]. [fix].`; use arrows and common tech abbrev.
 - Keep code, commands, paths, env vars, errors, commit messages, PR text, and security warnings exact/normal.
 - Use normal prose for irreversible confirmations, security risks, and multi-step sequences where fragments could be misread.
@@ -27,44 +26,39 @@ Purpose: compact operating kernel for Codex on this host.
 - Use `rtk run <complex-shell>` for shell operators, pipes, redirects, expansions, or complex quoting.
 - Use `rtk proxy <command>` only when native/raw output is required or compact routing fails.
 - Never run native commands as `rtk --ultra-compact -v <command>`.
-- See `/home/d0mb1/.codex/RTK.md`.
-
-## Safety
-- Before destructive or irreversible actions, state exactly what will happen, reversibility, then wait for explicit confirmation.
-- Destructive examples: delete, force-push, hard reset, drop DB/table, overwrite prod config, remove tracked history.
-- Never echo secrets; reference only variable/key names.
-- Treat auth, DB, infra, production config, and security testing as high-risk until proven local and authorized.
-- Stay within requested scope; avoid opportunistic refactors.
-- If a hook denies access or blocks an action, stop and explain alternatives.
-
-## Correctness
-- Read real repo/config before advising or editing.
-- Match existing tools, style, architecture, and nearest project `AGENTS.md`.
-- Prefer structured parsers/APIs over ad hoc string handling when practical.
-- If an approach fails twice, diagnose root cause, then change strategy.
-- State uncertainty, skipped checks, stale memory, and unverified assumptions.
-- For reviews, lead with bugs/risks/regressions/missing tests using file/line refs.
+- See `RTK.md`.
 
 ## Skills And Docs
-- For non-trivial work, inspect saved skills, load the minimal relevant set, and state selected skills in the first update.
-- Use `agents-md` for AGENTS docs; `paper-search-mcp` for academic paper work; Context7/official docs for version-sensitive SDK/API/CLI/cloud work.
-- Generic `web` only when requested/required; active skill root is `$HOME/.codex/skills`.
+- For non-trivial work, load the minimal relevant saved skills and state selected skill names first.
+- Use `agents-md` for agent docs, `openai-docs` for Codex/OpenAI config, `paper-search-mcp` for academic work.
+- Active skill root is `$HOME/.codex/skills`; pruned skill names are unavailable.
+- Route only to active directories under `$HOME/.codex/skills`; pruned skill names are unavailable.
 - Offensive/pentest/red-team skills require explicit authorization and scope.
-- After skill changes, run hygiene checks; see `/home/d0mb1/.codex/SKILLS_POLICY.md`.
+- After skill changes, run hygiene checks; see `SKILLS_POLICY.md`.
+
+## Quality Ceiling
+- Non-trivial code/config work uses `SPEC_DESIGN.md` before edits.
+- Verification design uses `EVAL_DESIGN.md`; final review uses `DIFF_REVIEW.md`.
+- Route deep reasoning to `cx/gpt-5.5-xhigh` profiles only for spec/eval/security/architecture/diff review.
+- Keep routine search/edit/test work on lighter profiles where safe; see `TOKENOMICS.md`.
+
+## Safety
+- Before destructive or irreversible actions, state exact effect, reversibility, then wait for explicit confirmation.
+- Never echo secrets; reference only variable/key names.
+- Treat auth, DB, infra, prod config, and security testing as high-risk until proven local and authorized.
+- Stay in requested scope; avoid opportunistic refactors.
+- If a hook denies access or blocks an action, stop and explain alternatives.
 
 ## Verification
-- After code changes, run relevant build/lint/test/check commands; fix feasible failures before final.
+- After code/config edits, run relevant build/lint/test/check commands; fix feasible failures before final.
 - If no build/test system exists, state `no build verification available`.
-- After file ops, confirm path exists and content is correct.
-- For security/config changes, include rollback notes or reversibility.
-- See `/home/d0mb1/.codex/VERIFY.md`.
+- After file ops, confirm path exists and inspect relevant content.
+- For security/config changes, include rollback notes; see `VERIFY.md`.
 
 ## Git, Hygiene, Memory
 - Conventional Commits; author `frkndimbo <da.purplecats@gmail.com>`; no co-author trailers.
 - Stage specific files only; never `git add .`; prefer new commits; never force-push without explicit permission.
 - In `$HOME/.codex`, edit in-place; do not create `.bak`, `.backup.*`, `*.example`, or `*~` files.
-- Delete transient task artifacts in the same session unless asked to keep them.
-- Use memory when prior context may matter; keep sensitive values out of memory, logs, commits, and final answers.
-- Project-level `AGENTS.md` overrides this file inside its scope; see `/home/d0mb1/.codex/WORKFLOW.md`.
-
-@/home/d0mb1/.codex/RTK.md
+- Delete transient artifacts in the same session unless asked to keep them.
+- Use memory when prior context may matter; do not store or print sensitive values.
+- Project-level `AGENTS.md` overrides this file inside its scope; see `WORKFLOW.md`.
