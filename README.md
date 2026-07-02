@@ -94,9 +94,3 @@ ls ~/.codex/backups
 
 Salin kembali file yang diperlukan dari `~/.codex/backups/<timestamp>`.
 
-
-```text
-frkndimbo <da.purplecats@gmail.com>
-```
-
-Jangan tambahkan `Co-Authored-By` supaya contributor GitHub tetap hanya `frkndimbo`.
